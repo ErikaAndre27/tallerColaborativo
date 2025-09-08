@@ -1,0 +1,623 @@
+/* Reset y configuración base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    color: #333;
+}
+
+.container {
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 30px;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 25px;
+    position: relative;
+    align-items: start;
+}
+
+/* Header */
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+.header h1 {
+    color: #2c3e50;
+    margin: 0 0 10px 0;
+    font-size: 2.2em;
+    font-weight: 700;
+}
+
+.header p {
+    color: #7f8c8d;
+    margin: 0;
+    font-size: 1.1em;
+}
+
+.info-btn {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+}
+
+.info-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+    background: linear-gradient(135deg, #2980b9, #3498db);
+}
+
+/* Contenedor del diagrama */
+.flowchart {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 15px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    position: relative;
+}
+
+/* Headers de tramos */
+.tramo-header {
+    grid-column: 1 / -1;
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+    color: white;
+    padding: 15px 20px;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 1.2em;
+    text-align: center;
+    margin: 20px 0 10px 0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Nodos del diagrama */
+.node {
+    position: relative;
+    color: white;
+    padding: 15px 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    font-weight: bold;
+    font-size: 0.9em;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #2c3e50;
+}
+
+/* Óvalos para inicio y fin */
+.node.start, .node.end {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 50px;
+    min-width: 120px;
+}
+
+/* Rectángulos para procesos */
+.node.process {
+    background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+    border-radius: 8px;
+}
+
+/* Rombos para decisiones - Verdaderos rombos */
+.node.decision {
+    background: #ff9500;
+    transform: rotate(45deg);
+    border-radius: 0;
+    min-width: 100px;
+    min-height: 100px;
+    border: 2px solid #ff7b00;
+    box-shadow: 0 3px 8px rgba(255, 149, 0, 0.2);
+}
+
+.node.decision span {
+    transform: rotate(-45deg);
+    display: block;
+    font-size: 12px;
+    line-height: 1.3;
+    max-width: 70px;
+    font-weight: 600;
+    color: white;
+    padding: 4px;
+}
+
+.node.decision:hover {
+    background: #ff7b00;
+    transform: rotate(45deg) scale(1.03);
+    box-shadow: 0 4px 10px rgba(255, 149, 0, 0.3);
+    border-color: #ff6b00;
+}
+
+/* Paralelogramo para entrada/salida de datos */
+.node.input-output {
+    background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%);
+    transform: skew(-15deg);
+    border-radius: 5px;
+}
+
+.node.input-output span {
+    transform: skew(15deg);
+    display: block;
+}
+
+/* Estilos para nodos de documento */
+.node.document {
+    background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+    border-radius: 8px 8px 0 8px;
+    position: relative;
+}
+
+.node.document::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-left: 15px solid #d35400;
+    border-top: 15px solid transparent;
+}
+
+/* Estilos para nodos de resultado */
+.node.success {
+    background: linear-gradient(135deg, #27ae60, #2ecc71) !important;
+}
+
+.node.warning {
+    background: linear-gradient(135deg, #f39c12, #e67e22) !important;
+}
+
+.node.error {
+    background: linear-gradient(135deg, #e74c3c, #c0392b) !important;
+}
+
+.node:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+.node.decision:hover {
+    background: #e68900;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(255, 149, 0, 0.4);
+}
+
+/* Nodo de inicio */
+.start-node {
+    background: linear-gradient(135deg, #4CAF50, #45a049);
+    color: white;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    grid-column: 2;
+    grid-row: 1;
+}
+
+/* Nodos de proceso */
+.process-node {
+    background: linear-gradient(135deg, #2196F3, #1976D2);
+    color: white;
+}
+
+/* Nodo de decisión */
+.node.decision {
+    background: #ff9500;
+    color: white;
+    width: 140px;
+    height: 140px;
+    min-width: 140px;
+    min-height: 140px;
+    border: 2px solid #e68900;
+    box-shadow: 0 4px 12px rgba(255, 149, 0, 0.3);
+    font-size: 0.85em;
+    line-height: 1.2;
+    padding: 0;
+    margin: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    transform: none;
+}
+
+.node.decision span {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    width: 90%;
+    height: 90%;
+    font-weight: 500;
+    line-height: 1.1;
+    transform: none;
+    font-size: 0.75em;
+    white-space: normal;
+    overflow: visible;
+    word-wrap: break-word;
+    hyphens: auto;
+}
+
+/* Nodo de éxito */
+.success-node {
+    background: linear-gradient(135deg, #4CAF50, #45a049);
+    color: white;
+}
+
+/* Nodo de advertencia */
+.warning-node {
+    background: linear-gradient(135deg, #FFC107, #FF8F00);
+    color: white;
+}
+
+/* Nodo de error */
+.error-node {
+    background: linear-gradient(135deg, #F44336, #D32F2F);
+    color: white;
+}
+
+/* Posicionamiento específico de nodos */
+/* TRAMO A */
+#tramo-a { grid-row: 1; }
+#inicio { grid-column: 3; grid-row: 2; }
+#tiene-usuario-sofia { grid-column: 3; grid-row: 3; }
+#registrarse-sofia { grid-column: 1; grid-row: 4; }
+#iniciar-sesion { grid-column: 3; grid-row: 4; }
+#buscar-programa-new { grid-column: 3; grid-row: 5; }
+#cumple-requisitos { grid-column: 3; grid-row: 6; }
+#explorar-otro-programa { grid-column: 1; grid-row: 7; }
+#completar-requisitos { grid-column: 2; grid-row: 7; }
+
+/* TRAMO B */
+#tramo-b { grid-row: 8; }
+#cursa-mismo-nivel { grid-column: 3; grid-row: 9; }
+#definir-terminar { grid-column: 1; grid-row: 10; }
+#inscribirse-convocatoria-new { grid-column: 3; grid-row: 10; }
+#inscripcion-confirmada { grid-column: 3; grid-row: 11; }
+#corregir-errores { grid-column: 5; grid-row: 12; }
+
+/* TRAMO C */
+#tramo-c { grid-row: 13; }
+#consultar-cronograma { grid-column: 3; grid-row: 14; }
+#presentar-fase1 { grid-column: 3; grid-row: 15; }
+#exige-fase2 { grid-column: 3; grid-row: 16; }
+#agendar-fase2 { grid-column: 1; grid-row: 17; }
+#presentar-fase2 { grid-column: 1; grid-row: 18; }
+#publicacion-resultados { grid-column: 3; grid-row: 18; }
+#resultado-seleccion { grid-column: 3; grid-row: 19; }
+#seleccionado-new { grid-column: 2; grid-row: 20; }
+#lista-espera-new { grid-column: 3; grid-row: 20; }
+#no-seleccionado-new { grid-column: 4; grid-row: 20; }
+#monitorear-cupos { grid-column: 3; grid-row: 21; }
+#reintentar { grid-column: 4; grid-row: 21; }
+
+/* TRAMO D */
+#tramo-d { grid-row: 22; }
+#cita-matricula-new { grid-column: 3; grid-row: 23; }
+#entregar-documentos { grid-column: 3; grid-row: 24; }
+#documentos-completos { grid-column: 3; grid-row: 25; }
+#subsanar-documentos { grid-column: 5; grid-row: 26; }
+#firmas-legalizacion-new { grid-column: 3; grid-row: 26; }
+#confirmacion-matricula { grid-column: 3; grid-row: 27; }
+
+/* TRAMO E */
+#tramo-e { grid-row: 28; }
+#induccion { grid-column: 3; grid-row: 29; }
+#asiste-induccion { grid-column: 3; grid-row: 30; }
+#reprogramar-induccion { grid-column: 5; grid-row: 31; }
+#inicio-formacion-new { grid-column: 3; grid-row: 31; }
+#fin-new { grid-column: 3; grid-row: 32; }
+
+/* Nodo de fin */
+.end-node {
+    background: linear-gradient(135deg, #4CAF50, #45a049);
+    color: white;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    grid-column: 2 / 4;
+    grid-row: 14;
+}
+
+/* Conectores base */
+.connector {
+    position: absolute;
+    background: #6c757d;
+    height: 2px;
+    z-index: 1;
+    border-radius: 1px;
+    transition: all 0.3s ease;
+}
+
+.connector::before {
+    content: "";
+    position: absolute;
+    right: -4px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-left: 4px solid #6c757d;
+    border-top: 2px solid transparent;
+    border-bottom: 2px solid transparent;
+    z-index: 5;
+}
+
+.connector:hover {
+    background: #495057;
+    height: 3px;
+    z-index: 3;
+    box-shadow: 0 1px 3px rgba(108, 117, 125, 0.3);
+}
+
+.connector:hover::before {
+    border-left-color: #495057;
+    border-left-width: 5px;
+    border-top-width: 2.5px;
+    border-bottom-width: 2.5px;
+    right: -5px;
+}
+
+
+
+/* Conectores de decisión SÍ */
+.connector.decision-yes {
+    background: #28a745;
+    height: 2px;
+}
+
+.connector.decision-yes::before {
+    content: "";
+    position: absolute;
+    right: -4px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-left: 4px solid #28a745;
+    border-top: 2px solid transparent;
+    border-bottom: 2px solid transparent;
+    z-index: 5;
+}
+
+/* Conectores de decisión NO */
+.connector.decision-no {
+    background: #dc3545;
+    height: 2px;
+}
+
+.connector.decision-no::before {
+    content: "";
+    position: absolute;
+    right: -4px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-left: 4px solid #dc3545;
+    border-top: 2px solid transparent;
+    border-bottom: 2px solid transparent;
+    z-index: 5;
+}
+
+/* Conectores de resultado */
+.connector.result {
+    background: #6c757d;
+    position: relative;
+}
+
+.connector.result::before {
+    content: "";
+    position: absolute;
+    right: -6px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-left: 6px solid #6c757d;
+    border-top: 3px solid transparent;
+    border-bottom: 3px solid transparent;
+    z-index: 5;
+}
+
+/* Conectores de bucle */
+.connector.loop {
+    background: #ffc107;
+    border: 2px dashed #ff8c00;
+    position: relative;
+}
+
+.connector.loop::before {
+    content: "";
+    position: absolute;
+    right: -6px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-left: 6px solid #ffc107;
+    border-top: 3px solid transparent;
+    border-bottom: 3px solid transparent;
+    z-index: 5;
+}
+
+/* Conectores principales (verticales) */
+.connector {
+    width: 4px;
+    height: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0.8;
+}
+
+.connector:hover {
+    height: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Conectores horizontales para decisiones */
+.connector[data-from="consultar-resultados"][data-to="seleccionado"],
+.connector[data-from="consultar-resultados"][data-to="lista-espera"],
+.connector[data-from="consultar-resultados"][data-to="no-seleccionado"] {
+    width: 80px;
+    height: 4px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.connector[data-from="consultar-resultados"][data-to="seleccionado"] {
+    left: 20%;
+}
+
+.connector[data-from="consultar-resultados"][data-to="lista-espera"] {
+    left: 45%;
+    width: 40px;
+}
+
+.connector[data-from="consultar-resultados"][data-to="no-seleccionado"] {
+    right: 20%;
+}
+
+/* Conectores de convergencia */
+.connector[data-from="seleccionado"][data-to="cita-matricula"],
+.connector[data-from="lista-espera"][data-to="cita-matricula"] {
+    width: 4px;
+    height: 40px;
+}
+
+/* Flechas en los conectores */
+.connector::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border: 8px solid transparent;
+}
+
+/* Flechas verticales hacia abajo */
+.connector[data-from="inicio"][data-to="registrar"]::after,
+.connector[data-from="registrar"][data-to="ver-area"]::after,
+.connector[data-from="ver-area"][data-to="crear-ejemplo"]::after,
+.connector[data-from="crear-ejemplo"][data-to="subir-info"]::after,
+.connector[data-from="subir-info"][data-to="enviar-doc"]::after {
+    bottom: -8px;
+    left: -6px;
+    border-top-color: #34495e;
+}
+
+/* Flecha horizontal hacia la derecha */
+.connector[data-from="enviar-doc"][data-to="proceso-kyc"]::after {
+    right: -8px;
+    top: -6px;
+    border-left-color: #34495e;
+}
+
+/* Flecha horizontal hacia la izquierda */
+.connector[data-from="informacion-matricula"][data-to="cronograma-ingresar"]::after {
+    left: -8px;
+    top: -6px;
+    border-right-color: #34495e;
+}
+
+/* Responsive design */
+@media (max-width: 1200px) {
+    .flowchart {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    
+    .container {
+        max-width: 100%;
+        padding: 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    .flowchart {
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 10px;
+    }
+    
+    .node {
+        font-size: 0.8em;
+        padding: 8px 12px;
+    }
+    
+    .tramo-header {
+        font-size: 1em;
+        padding: 10px 15px;
+    }
+}
+
+/* Animaciones */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.node {
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+.node:nth-child(1) { animation-delay: 0.1s; }
+.node:nth-child(2) { animation-delay: 0.2s; }
+.node:nth-child(3) { animation-delay: 0.3s; }
+.node:nth-child(4) { animation-delay: 0.4s; }
+.node:nth-child(5) { animation-delay: 0.5s; }
+.node:nth-child(6) { animation-delay: 0.6s; }
+.node:nth-child(7) { animation-delay: 0.7s; }
+.node:nth-child(8) { animation-delay: 0.8s; }
+.node:nth-child(9) { animation-delay: 0.9s; }
+.node:nth-child(10) { animation-delay: 1.0s; }
+
+/* Responsive */
+@media (max-width: 768px) {
+    .flowchart {
+        grid-template-columns: 1fr;
+        grid-gap: 40px;
+        padding: 30px 20px;
+    }
+    
+    .node {
+        min-width: 200px;
+        font-size: 16px;
+    }
+    
+    header h1 {
+        font-size: 2em;
+    }
+    
+    .connector {
+        display: none;
+    }
+}

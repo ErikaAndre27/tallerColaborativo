@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagrama de Flujo - Proceso Completo de Matrícula SENA</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Proceso Completo de Matrícula SENA</h1>
+            <p>Diagrama detallado por tramos desde el acceso hasta el inicio de formación</p>
+            <button id="info-adicional-btn" class="info-btn">ℹ️ Información Adicional</button>
+        </div>
+
+        <div class="flowchart">
+            <!-- TRAMO A: Acceso y requisitos -->
+            <div class="tramo-header" id="tramo-a">TRAMO A — Acceso y requisitos</div>
+            
+            <!-- 1. Inicio -->
+            <div class="node start" id="inicio">🟢 Inicio</div>
+            
+            <!-- 2. ¿Ya tienes usuario en SOFIA Plus? -->
+            <div class="node decision" id="tiene-usuario-sofia">
+                <span>¿Ya tienes usuario<br>en SOFIA Plus?</span>
+            </div>
+            
+            <!-- 3. Registrarse en SOFIA Plus -->
+            <div class="node input-output" id="registrarse-sofia">
+                <span>Registrarse en SOFIA Plus<br>(crear cuenta, completar datos,<br>cargar doc. identidad)</span>
+            </div>
+            
+            <!-- 4. Iniciar sesión -->
+            <div class="node process" id="iniciar-sesion">
+                <span>Iniciar sesión<br>en SOFIA Plus</span>
+            </div>
+            
+            <!-- 5. Buscar programa -->
+            <div class="node process" id="buscar-programa-new">
+                <span>Buscar programa en<br>Oferta Educativa<br>(filtrar por nivel, ciudad, jornada)</span>
+            </div>
+            
+            <!-- 6. ¿Cumples requisitos? -->
+            <div class="node decision" id="cumple-requisitos">
+                <span>¿Cumples los requisitos<br>de la ficha del programa?</span>
+            </div>
+            
+            <!-- 6.1 Explorar otro programa -->
+            <div class="node process" id="explorar-otro-programa">
+                <span>Explorar otro programa</span>
+            </div>
+            
+            <!-- 6.2 Completar requisitos -->
+            <div class="node process" id="completar-requisitos">
+                <span>Completar requisitos<br>(ej. certificado académico)</span>
+            </div>
+
+            <!-- TRAMO B: Inscripción -->
+            <div class="tramo-header" id="tramo-b">TRAMO B — Inscripción</div>
+            
+            <!-- 7. ¿Cursas programa del mismo nivel? -->
+            <div class="node decision" id="cursa-mismo-nivel">
+                <span>¿Cursas actualmente programa<br>del mismo nivel?</span>
+            </div>
+            
+            <!-- 7.1 Definir terminar/retirarse -->
+            <div class="node process" id="definir-terminar">
+                <span>Definir: terminar/retirarse<br>del actual antes de inscribirse</span>
+            </div>
+            
+            <!-- 8. Inscribirse en convocatoria -->
+            <div class="node process" id="inscribirse-convocatoria-new">
+                <span>Inscribirse en<br>convocatoria vigente</span>
+            </div>
+            
+            <!-- 9. ¿Inscripción confirmada? -->
+            <div class="node decision" id="inscripcion-confirmada">
+                <span>¿Inscripción confirmada<br>en plataforma?</span>
+            </div>
+            
+            <!-- 8.1 Corregir errores -->
+            <div class="node process" id="corregir-errores">
+                <span>Corregir errores de inscripción<br>(horario, cupo, datos)</span>
+            </div>
+
+            <!-- TRAMO C: Selección (admisión) -->
+            <div class="tramo-header" id="tramo-c">TRAMO C — Selección (admisión)</div>
+            
+            <!-- 10. Consultar cronograma -->
+            <div class="node process" id="consultar-cronograma">
+                <span>Consultar cronograma<br>de pruebas</span>
+            </div>
+            
+            <!-- 11. Presentar Fase I -->
+            <div class="node process" id="presentar-fase1">
+                <span>Presentar Fase I<br>(prueba web) en fecha/hora asignada</span>
+            </div>
+            
+            <!-- 12. ¿Programa exige Fase II? -->
+            <div class="node decision" id="exige-fase2">
+                <span>¿Programa exige Fase II<br>(entrevista/taller/prueba)?</span>
+            </div>
+            
+            <!-- 13. Citar/Agendar Fase II -->
+            <div class="node process" id="agendar-fase2">
+                <span>Citar/Agendar Fase II<br>(presencial o remota)</span>
+            </div>
+            
+            <!-- 14. Presentar Fase II -->
+            <div class="node process" id="presentar-fase2">
+                <span>Presentar Fase II</span>
+            </div>
+            
+            <!-- 15. Publicación de resultados -->
+            <div class="node process" id="publicacion-resultados">
+                <span>Publicación de resultados<br>(SOFIA Plus)</span>
+            </div>
+            
+            <!-- 16. Resultado -->
+            <div class="node decision" id="resultado-seleccion">
+                <span>Resultado</span>
+            </div>
+            
+            <!-- Resultados posibles -->
+            <div class="node success" id="seleccionado-new">Seleccionado(a)</div>
+            <div class="node warning" id="lista-espera-new">Lista de espera</div>
+            <div class="node error" id="no-seleccionado-new">No seleccionado(a)</div>
+            
+            <!-- 16.1 Monitorear cupos -->
+            <div class="node process" id="monitorear-cupos">
+                <span>Monitorear cupos<br>(si se libera → continúa)</span>
+            </div>
+            
+            <!-- 16.2 Reintentar -->
+            <div class="node process" id="reintentar">
+                <span>Reintentar en próxima convocatoria<br>(mejorar perfil, elegir otro programa)</span>
+            </div>
+
+            <!-- TRAMO D: Matrícula -->
+            <div class="tramo-header" id="tramo-d">TRAMO D — Matrícula</div>
+            
+            <!-- 17. Cita de matrícula -->
+            <div class="node process" id="cita-matricula-new">
+                <span>Cita de matrícula<br>(el Centro convoca)</span>
+            </div>
+            
+            <!-- 18. Entregar documentos -->
+            <div class="node document" id="entregar-documentos">
+                <span>⧉ Entregar documentos:<br>• Doc. identidad (150%)<br>• Certificados académicos<br>• Según programa específico</span>
+            </div>
+            
+            <!-- 19. ¿Documentos completos? -->
+            <div class="node decision" id="documentos-completos">
+                <span>¿Documentos completos<br>y legibles?</span>
+            </div>
+            
+            <!-- 20. Subsanar documentos -->
+            <div class="node process" id="subsanar-documentos">
+                <span>Subsanar documentos<br>(dentro del plazo)</span>
+            </div>
+            
+            <!-- 21. Firmas y legalización -->
+            <div class="node process" id="firmas-legalizacion-new">
+                <span>Firmas y legalización en SOFIA Plus<br>(reglamentos, autorizaciones)</span>
+            </div>
+            
+            <!-- 22. Confirmación de matrícula -->
+            <div class="node success" id="confirmacion-matricula">
+                <span>Confirmación de matrícula</span>
+            </div>
+
+            <!-- TRAMO E: Inducción e inicio -->
+            <div class="tramo-header" id="tramo-e">TRAMO E — Inducción e inicio</div>
+            
+            <!-- 23. Inducción -->
+            <div class="node process" id="induccion">
+                <span>Inducción<br>(orientaciones, horarios, plataforma)</span>
+            </div>
+            
+            <!-- 24. ¿Asiste a inducción? -->
+            <div class="node decision" id="asiste-induccion">
+                <span>¿Asiste a inducción?</span>
+            </div>
+            
+            <!-- 24.1 Reprogramar/Justificar -->
+            <div class="node warning" id="reprogramar-induccion">
+                <span>Reprogramar/Justificar<br>(riesgo de pérdida de cupo)</span>
+            </div>
+            
+            <!-- 25. Inicio de formación -->
+            <div class="node process" id="inicio-formacion-new">
+                <span>Inicio de formación<br>(etapa lectiva)</span>
+            </div>
+            
+            <!-- 26. Fin -->
+            <div class="node end" id="fin-new">
+                <span>🟢 Fin del proceso de matrícula</span>
+            </div>
+
+            <!-- CONECTORES COMPLEJOS -->
+            <!-- Tramo A -->
+            <div class="connector" data-from="inicio" data-to="tiene-usuario-sofia"></div>
+            <div class="connector decision-no" data-from="tiene-usuario-sofia" data-to="registrarse-sofia"></div>
+            <div class="connector decision-yes" data-from="tiene-usuario-sofia" data-to="iniciar-sesion"></div>
+            <div class="connector" data-from="registrarse-sofia" data-to="iniciar-sesion"></div>
+            <div class="connector" data-from="iniciar-sesion" data-to="buscar-programa-new"></div>
+            <div class="connector" data-from="buscar-programa-new" data-to="cumple-requisitos"></div>
+            <div class="connector decision-yes" data-from="cumple-requisitos" data-to="cursa-mismo-nivel"></div>
+            <div class="connector decision-no" data-from="cumple-requisitos" data-to="explorar-otro-programa"></div>
+            <div class="connector decision-no" data-from="cumple-requisitos" data-to="completar-requisitos"></div>
+            <div class="connector loop" data-from="explorar-otro-programa" data-to="buscar-programa-new"></div>
+            <div class="connector loop" data-from="completar-requisitos" data-to="buscar-programa-new"></div>
+
+            <!-- Tramo B -->
+            <div class="connector decision-yes" data-from="cursa-mismo-nivel" data-to="definir-terminar"></div>
+            <div class="connector decision-no" data-from="cursa-mismo-nivel" data-to="inscribirse-convocatoria-new"></div>
+            <div class="connector loop" data-from="definir-terminar" data-to="buscar-programa-new"></div>
+            <div class="connector" data-from="inscribirse-convocatoria-new" data-to="inscripcion-confirmada"></div>
+            <div class="connector decision-yes" data-from="inscripcion-confirmada" data-to="consultar-cronograma"></div>
+            <div class="connector decision-no" data-from="inscripcion-confirmada" data-to="corregir-errores"></div>
+            <div class="connector loop" data-from="corregir-errores" data-to="inscribirse-convocatoria-new"></div>
+
+            <!-- Tramo C -->
+            <div class="connector" data-from="consultar-cronograma" data-to="presentar-fase1"></div>
+            <div class="connector" data-from="presentar-fase1" data-to="exige-fase2"></div>
+            <div class="connector decision-yes" data-from="exige-fase2" data-to="agendar-fase2"></div>
+            <div class="connector decision-no" data-from="exige-fase2" data-to="publicacion-resultados"></div>
+            <div class="connector" data-from="agendar-fase2" data-to="presentar-fase2"></div>
+            <div class="connector" data-from="presentar-fase2" data-to="publicacion-resultados"></div>
+            <div class="connector" data-from="publicacion-resultados" data-to="resultado-seleccion"></div>
+            <div class="connector result" data-from="resultado-seleccion" data-to="seleccionado-new" data-result-text="Seleccionado(a)"></div>
+            <div class="connector result" data-from="resultado-seleccion" data-to="lista-espera-new" data-result-text="Lista de espera"></div>
+            <div class="connector result" data-from="resultado-seleccion" data-to="no-seleccionado-new" data-result-text="No seleccionado(a)"></div>
+            <div class="connector" data-from="lista-espera-new" data-to="monitorear-cupos"></div>
+            <div class="connector" data-from="no-seleccionado-new" data-to="reintentar"></div>
+            <div class="connector loop" data-from="reintentar" data-to="buscar-programa-new"></div>
+            <div class="connector decision-yes" data-from="monitorear-cupos" data-to="seleccionado-new"></div>
+            <div class="connector decision-no" data-from="monitorear-cupos" data-to="reintentar"></div>
+
+            <!-- Tramo D -->
+            <div class="connector" data-from="seleccionado-new" data-to="cita-matricula-new"></div>
+            <div class="connector" data-from="cita-matricula-new" data-to="entregar-documentos"></div>
+            <div class="connector" data-from="entregar-documentos" data-to="documentos-completos"></div>
+            <div class="connector decision-yes" data-from="documentos-completos" data-to="firmas-legalizacion-new"></div>
+            <div class="connector decision-no" data-from="documentos-completos" data-to="subsanar-documentos"></div>
+            <div class="connector loop" data-from="subsanar-documentos" data-to="entregar-documentos"></div>
+            <div class="connector" data-from="firmas-legalizacion-new" data-to="confirmacion-matricula"></div>
+
+            <!-- Tramo E -->
+            <div class="connector" data-from="confirmacion-matricula" data-to="induccion"></div>
+            <div class="connector" data-from="induccion" data-to="asiste-induccion"></div>
+            <div class="connector decision-yes" data-from="asiste-induccion" data-to="inicio-formacion-new"></div>
+            <div class="connector decision-no" data-from="asiste-induccion" data-to="reprogramar-induccion"></div>
+            <div class="connector" data-from="reprogramar-induccion" data-to="inicio-formacion-new"></div>
+            <div class="connector" data-from="inicio-formacion-new" data-to="fin-new"></div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
